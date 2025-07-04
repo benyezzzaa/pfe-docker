@@ -1,0 +1,36 @@
+
+services:
+  # Backend Service (NestJS)
+  backend:
+    build: ./backend-commercial
+    container_name: my-app-backend-dev
+    ports:
+      # Map port 3001 on your host machine to port 3000 in the container
+      - "4000:4000"
+    volumes:
+      # Mount the local backend source code into the container
+      - ./backend-commercial:/usr/src/app
+      # Use an anonymous volume to prevent local node_modules from overwriting the container's
+      - /usr/src/app/node_modules
+    environment:
+      - NODE_ENV=development
+    env_file:
+      - ./backend-commercial/.env
+  # Frontend Service (React)
+  frontend:
+    build: ./admin-dashboard-pfe
+    container_name: my-app-frontend-dev
+    ports:
+      # Map port 3000 on your host to port 3000 in the container
+      - "3000:3000"
+    volumes:
+      # Mount the local frontend source code into the container
+      - ./admin-dashboard-pfe:/app
+      # Use an anonymous volume for node_modules
+      - /app/node_modules
+    environment:
+      # This is crucial for React to know where to send API requests.
+      # The browser will access the backend via localhost:3001 on your machine.
+      - REACT_APP_API_URL=http://localhost:3001
+      # Required for hot-reloading to work correctly in some environments
+      - CHOKIDAR_USEPOLLING=true
