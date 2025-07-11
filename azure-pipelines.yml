@@ -10,8 +10,8 @@ resources:
  
 variables:
   tag: '$(Build.BuildId)'
-  frontendImage: 'my-frontend'
-  backendImage: 'my-backend'
+  frontendImage: 'admin-dashboard-pfe'
+  backendImage: 'backend-commercial'
  
 stages:
 - stage: Build
@@ -29,7 +29,7 @@ stages:
           command: build
           repository: $(frontendImage)
           Dockerfile: 'Dockerfile'
-          buildContext: 'frontend'
+          buildContext: 'admin-dashboard-pfe'
           tags: |
             latest
             $(tag)
@@ -41,7 +41,7 @@ stages:
           command: build
           repository: $(backendImage)
           Dockerfile: 'Dockerfile'
-          buildContext: 'backend'
+          buildContext: 'backend-commercial'
           tags: |
             latest
             $(tag)
