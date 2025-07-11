@@ -1,6 +1,9 @@
 {
   "dependencies": {
+    "classnames": "^2.5.1",
     "jspdf": "^3.0.1",
-    "jspdf-autotable": "^5.0.2"
+    "jspdf-autotable": "^5.0.2",
+    "react-phone-input-2": "^2.15.1",
+    "react-toastify": "^11.0.5"
   }
 }
