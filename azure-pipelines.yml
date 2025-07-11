@@ -29,7 +29,7 @@ stages:
         inputs:
           command: build
           repository: $(frontendImage)
-          Dockerfile: 'Dockerfile'
+          Dockerfile: 'admin-dashboard-pfe/Dockerfile'
           buildContext: 'admin-dashboard-pfe'
           tags: |
             latest
@@ -41,7 +41,7 @@ stages:
         inputs:
           command: build
           repository: $(backendImage)
-          Dockerfile: 'Dockerfile'
+          Dockerfile: 'backend-commercial/Dockerfile'
           buildContext: 'backend-commercial'
           tags: |
             latest
